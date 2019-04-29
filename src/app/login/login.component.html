@@ -1,0 +1,64 @@
+<div class="login_page d-flex flex-wrap align-content-center" style="background-image: url(../assets/images/single-red-stripe-vector.jpg);">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-5">
+				<div class="form_box">
+					<h2 class="text-center mb-3">Login</h2>
+					<form class="needs-validation form-signin margin-top-10" novalidate  #loginForm="ngForm" (submit)="doLogin(loginDetails)">
+						<div class="form-group">
+							<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" [(ngModel)]="loginDetails.email" required autofocus>
+						</div>
+						<div class="form-group">
+							<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" [(ngModel)]="loginDetails.password" required>
+						</div>
+						<button class="btn btn-success btn-block" type="submit">Login</button>
+					</form>
+					<div class="text-center mt-3">
+						<a (click)="openModel()" class="forgot-password" style="cursor: pointer;"> Reset the password?</a>
+					</div>
+					<hr>
+					<a routerLink='/register' class="btn btn-primary btn-block text-white">Register Now</a>
+					<button class="btn-facebook btn btn-block mt-2 text-white" (click)="socialSignIn('facebook')">
+						Login with Facebook
+					</button>
+					<button class="btn-google btn btn-block text-white" (click)="socialSignIn('google')">
+						Login with Google
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="passwordModal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Reset Password</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="passwordForm">
+					<div class="form-group">
+						<input type="email" name="email" formControlName="email" placeholder="Enter Your Email" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" formControlName="password" placeholder="Enter Old Password" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="password" name="newPassword" formControlName="newPassword" placeholder="Enter New Password" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="password" name="confirmNewPassword" formControlName="confirmNewPassword" placeholder="Re-Enter New Password" class="form-control">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-success btn-block" [disabled]="passwordForm.invalid" (click)="changePassword(passwordForm.value)">Change</button>
+						<button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
